@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(
+    #009688 0px,
+    #009688 15vh,
+    #dddbd4 15vh,
+    #dddbdc 100%);
+}
+
+/* contenitori */
+.app {
+  display: flex;
+  position: relative;
+  width: 90%;
+  height: 90%;
+  top: 50%;
+  left: 50%;
+  background-color: white;
+  transform: translate(-50%, -50%);
+}
+
+.contact {
+  background-color: purple;
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat {
+  background-color: blue;
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* elementi contenitore contatti sinistra */
+.user {
+  height: 60px;
+  width: 100%;
+  background-color: green;
+}
+
+.call-to-action {
+  height: 60px;
+  width: 100%;
+  background-color: lightblue;
+}
+
+.search {
+  height: 50px;
+  width: 100%;
+  background-color: orange;
+}
+
+.people {
+  height: 75px;
+  width: 100%;
+  background-color: red;
+}
+
+/* elementi contenitore chat destra */
+.chat-header {
+  height: 60px;
+  width: 100%;
+  background-color: lightgreen;
+  z-index: 2;
+  justify-content: flex-start;
+}
+
+.chat-main {
+  overflow: scroll;
+}
+
+.chat-footer {
+  height: 100px;
+  background-color: pink;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
