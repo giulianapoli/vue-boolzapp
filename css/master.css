@@ -13,6 +13,7 @@
     #009688 15vh,
     #dddbd4 15vh,
     #dddbdc 100%);
+    font-family: 'Roboto';
 }
 
 /* contenitori */
@@ -28,11 +29,11 @@
 }
 
 .contact {
-  background-color: purple;
   height: 100%;
   width: 40%;
   display: flex;
   flex-direction: column;
+  border-right: 1px solid #b1b1b1;
 }
 
 .chat {
@@ -42,49 +43,100 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  justify-content: space-between;
 }
 
 /* elementi contenitore contatti sinistra */
 .user {
   height: 60px;
   width: 100%;
-  background-color: green;
+  background-color: #eaeaea;
+}
+
+.user-info > img {
+  width: 50px;
+  border-radius: 25px;
 }
 
 .call-to-action {
   height: 60px;
   width: 100%;
-  background-color: lightblue;
+  background-color: #8edafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bell {
+  background-color: #f2fbff;
+  width: 40px;
+  height: 40px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bell > * {
+  color: #8edafc;
+  font-size: 15px;
+}
+
+.call-to-action div:last-child {
+  width: 80%;
+}
+
+.call-to-action div:last-child span {
+  font-size: 12px;
+}
+
+.call-to-action div:last-child a {
+  font-size: 10px;
 }
 
 .search {
-  height: 50px;
+  height: 35px;
   width: 100%;
-  background-color: orange;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search > input {
+  width: 80%;
+  height: 80%;
+  margin: auto;
 }
 
 .people {
   height: 75px;
   width: 100%;
-  background-color: red;
+  background-color: #ffffff;
+  border-bottom: 1px solid #b1b1b1;
+}
+
+.people > img {
+  width: 50px;
+  border-radius:
 }
 
 /* elementi contenitore chat destra */
 .chat-header {
   height: 60px;
-  width: 100%;
-  background-color: lightgreen;
+  width: 60%;
+  background-color: #eaeaea;
   z-index: 2;
-  justify-content: flex-start;
+  position: fixed;
 }
 
 .chat-main {
-  overflow: scroll;
+  overflow: hidden;
+  height: 100%;
+  background-image: url('../resources/img/mine.jpg');
 }
 
 .chat-footer {
   height: 100px;
   background-color: pink;
-  justify-content: flex-end;
-  align-items: flex-end;
 }

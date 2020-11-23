@@ -11,7 +11,7 @@
     <!-- <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> -->
 
     <!-- fontawesome -->
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/master.css">
@@ -25,22 +25,52 @@
   <body class="wrapper">
 
     <!-- app web -->
-    <div class="app">
+    <div id="root" class="app">
 
-      <!-- colonna contatti di destra -->
+      <!-- colonna contatti di sinistra -->
       <div class="contact">
 
         <!-- elenco contatti -->
-        <div class="user"></div>
-        <div class="call-to-action"></div>
-        <div class="search"></div>
-        <div class="people"></div>
-        <div class="people"></div>
-        <div class="people"></div>
-        <div class="people"></div>
+        <div class="user">
+          <div class="user-info">
+            <img src="resources/img/avatar_io.jpg" alt="Utente">
+            <span>Nome utente</span>
+          </div>
+          <div class="user-utilities">
+
+          </div>
+        </div>
+
+        <!-- Invito attivazione notifiche -->
+        <div class="call-to-action">
+          <div class="bell">
+            <i class="fas fa-bell-slash"></i>
+          </div>
+          <div>
+            <span>Ricevi notifiche di nuovi messaggi</span> <br>
+            <a href="#">Attiva notifiche desktop</a>
+          </div>
+        </div>
+
+        <div class="search">
+          <label for="search">
+            <i class="fas fa-search"></i>
+          </label>
+          <input type="text" placeholder="Cerca o inizia una nuova chat" value="">
+
+        </div>
+
+        <!-- lista contatti -->
+        <ul class="people"
+        v-for="(element, index) in contacts
+        >
+          <li>
+            <img src="" alt="">
+          </li>
+        </ul>
       </div>
 
-      <!-- colonna chat di sinistra -->
+      <!-- colonna chat di destra -->
       <div class="chat">
         <div class="chat-header">
 
@@ -51,7 +81,7 @@
         </div>
 
         <div class="chat-footer">
-          
+
         </div>
       </div>
     </div>
