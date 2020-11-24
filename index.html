@@ -30,12 +30,17 @@
       <!-- colonna contatti di sinistra -->
       <div class="contact">
 
-        <!-- elenco contatti -->
-        <div class="user d-flex">
-          <div class="user-info">
-            <img src="resources/img/avatar_io.jpg" alt="Utente">
-            <span>Nome utente</span>
+        <!-- mio profilo -->
+        <div class="user d-flex v-align">
+          <div class="user-info d-flex v-align">
+
+            <!-- bindo l'oggetto dellutente -->
+            <img :src="myUsername.photo" alt="Utente">
+            <span>{{myUsername.username}}</span>
+
           </div>
+
+          <!-- icone utili -->
           <div class="user-utilities">
 
           </div>
@@ -52,6 +57,7 @@
           </div>
         </div>
 
+        <!-- barra ricerca contatti -->
         <div class="search">
           <label for="search">
             <i class="fas fa-search"></i>
@@ -65,53 +71,75 @@
 
           <!-- aggancio gli oggetti agli li -->
           <li
+          class="d-flex v-align"
           v-for="(element, index) in contacts"
+          @click="contactChat(index)"
+          :class="{selected: index === counter}"
           >
+              <!-- aggancio la chiave foto a img -->
+             <img :src="element['photo']" alt="">
 
-             <!-- aggancio la chiave foto a img -->
-            <img :src="element['photo']" alt="">
-
-            <!-- e i nomi  -->
-            <div class="flex-end">
+             <!-- e i nomi  -->
+             <div class="flex-end">
 
 
-              <span>{{element.username}}</span>
-              <span>{{element.lastSeen}}</span>
+               <span>{{element.username}}</span> <br>
+               <span>{{element.lastSeen}}</span>
 
-            </div>
+             </div>
+
+
 
           </li>
         </ul>
       </div>
 
       <!-- colonna chat di destra -->
-      <div class="chat">
+      <div class="chat d-flex">
         <div class="chat-header">
-          <div class="active d-flex">
+          <div class="active d-flex flex-start">
             <div>
-              <img src="resources/img/avatar_1.jpg">
+              <img :src="contacts[counter].photo">
             </div>
 
+
             <div>
-              <h3>Michele</h3> <br>
+
+              <h3>{{contacts[counter].username}}</h3> <br>
               <span>Ultimo accesso oggi alle</span>
             </div>
 
           </div>
         </div>
 
-        <div class="chat-main">
+        <div class="chat-main d-flex flex-col">
+
+          <!-- messaggi utenti -->
+          <div>
 
 
+            <div class="message d-flex"
+            :class="{receive : element.type == 'receive', send : element.type == 'send'}"
+            v-for="element in contacts[counter].chatHistory"
+            >
+              <!-- ricevuti -->
+              <span>{{element.text}}</span>
 
+            </div>
+
+          </div>
         </div>
 
         <!-- input utente chat -->
-        <div class="chat-footer d-flex">
+        <div class="chat-footer d-flex flex-end">
 
 
           <!-- salvo il contenuto del messaggio in una variabile -->
-          <input type="text" placeholder="Scrivi un messaggio" name="" value="">
+          <input type="text"
+          placeholder="Scrivi un messaggio"
+          v-model="inputMessage"
+          @keyup.enter="sendMessage()"
+          >
 
         </div>
       </div>

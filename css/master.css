@@ -9,10 +9,11 @@
   height: 100vh;
   width: 100vw;
   background: linear-gradient(
-    #009688 0px,
-    #009688 15vh,
-    #dddbd4 15vh,
-    #dddbdc 100%);
+    to bottom,
+    #00bfa5 0px,
+    #009788 15vh,
+    #dddbd1 15vh,
+    #d2dbdc 100%);
     font-family: 'Roboto';
 }
 
@@ -22,9 +23,24 @@
   display: flex;
 }
 
+.flex-col {
+  flex-flow: column;
+}
+
 .flex-end {
-  align-items: flex-end;
   justify-content: flex-end;
+}
+
+.flex-start {
+  justify-content: flex-start;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.v-align {
+  align-items: center;
 }
 
 /* contenitori */
@@ -50,7 +66,6 @@
 .chat {
   width: 60%;
   height: 100%;
-  display: flex;
   flex-direction: column;
   position: relative;
   justify-content: space-between;
@@ -73,7 +88,7 @@
 .call-to-action {
   height: 60px;
   width: 100%;
-  background-color: #8edafc;
+  background-color: #2bd888;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,7 +105,7 @@
 }
 
 .bell > * {
-  color: #8edafc;
+  color: #00e676;
   font-size: 15px;
 }
 
@@ -130,11 +145,17 @@
 
 .people > li {
   border-bottom: 1px solid #b1b1b1;
+  height: 100%;
 }
 
 .people li > img {
   width: 50px;
-  border-radius:
+  height: 75%;
+  border-radius: 25px;
+}
+
+.selected {
+  background-color: #eaeceb;
 }
 
 /* elementi contenitore chat destra */
@@ -158,9 +179,33 @@
 }
 
 .chat-main {
-  overflow: hidden;
-  height: 100%;
+  margin-top: 60px;
+  height: calc(100% - 60px - 10%);
   background-image: url('../resources/img/mine.jpg');
+
+}
+
+.message {
+  min-width: 30%;
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+.message > span {
+  word-break: break-all;
+}
+
+.receive {
+  background-color: #ffffff;
+}
+
+.send {
+  background-color: #D5F9BA;
+  align-self: flex-end;
 }
 
 /* input utente */
