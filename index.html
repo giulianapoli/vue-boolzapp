@@ -62,7 +62,13 @@
           <label for="search">
             <i class="fas fa-search"></i>
           </label>
-          <input type="text" placeholder="Cerca o inizia una nuova chat" value="">
+          <input
+          type="text"
+          placeholder="Cerca o inizia una nuova chat"
+          value=""
+          v-model="searchInput"
+          @keyup.enter="filterContacts()"
+          >
 
         </div>
 
@@ -70,32 +76,44 @@
         <ul class="people">
 
           <!-- aggancio gli oggetti agli li -->
-          <li
-          class="d-flex v-align"
-          v-for="(element, index) in contacts"
-          @click="contactChat(index)"
-          :class="{selected: index === counter}"
-          >
-              <!-- aggancio la chiave foto a img -->
-             <img :src="element['photo']" alt="">
+          <template v-if="searchInput.length > 0">
+            <li
+            class="d-flex v-align"
+            v-for="(element, index) in filteredContacts"
+            @click="activateFilteredContact(index)"
+            :class="{selected: index === counter}"
+            >
+            </li>
+          </template>
+
+          <template v-else>
+            <li
+            class="d-flex v-align"
+            v-for="(element, index) in contacts"
+            @click="contactChat(index)"
+            :class="{selected: index === counter}"
+            >
+            </li>
+          </template>
+
+          <!-- aggancio la chiave foto a img -->
+          <img :src="element['photo']" alt="">
 
              <!-- e i nomi  -->
-             <div class="flex-end">
+          <div class="flex-end">
 
 
-               <span>{{element.username}}</span> <br>
-               <span>{{element.lastSeen}}</span>
+            <span>{{element.username}}</span> <br>
+            <span>{{element.lastSeen}}</span>
 
-             </div>
-
-
-
-          </li>
+          </div>
         </ul>
       </div>
 
       <!-- colonna chat di destra -->
       <div class="chat d-flex">
+
+        <!-- barra chat superiore -->
         <div class="chat-header">
           <div class="active d-flex flex-start">
             <div>
@@ -112,12 +130,10 @@
           </div>
         </div>
 
+        <!-- messaggi utenti -->
         <div class="chat-main d-flex flex-col">
 
-          <!-- messaggi utenti -->
           <div>
-
-
             <div class="message d-flex"
             :class="{receive : element.type == 'receive', send : element.type == 'send'}"
             v-for="element in contacts[counter].chatHistory"
@@ -126,13 +142,11 @@
               <span>{{element.text}}</span>
 
             </div>
-
           </div>
         </div>
 
         <!-- input utente chat -->
         <div class="chat-footer d-flex flex-end">
-
 
           <!-- salvo il contenuto del messaggio in una variabile -->
           <input type="text"

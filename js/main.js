@@ -71,7 +71,8 @@ const rootApp = new Vue ({
     inputMessage: '',
     contacts: [...contacts],
     counter: 0,
-    myUsername: myUsername
+    myUsername: myUsername,
+    searchInput: ''
 
   },
   methods: {
@@ -88,7 +89,13 @@ const rootApp = new Vue ({
       )
 
       this.inputMessage = '';
-    }
+    },
+
+    filterContacts() {
+      this.filteredContacts = this.contacts.filter( (element) => element.username.toLowerCase().includes(this.searchInput) )
+    },
+
+    // activateFilteredContact(index)
   }
 
 })
