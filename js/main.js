@@ -15,7 +15,7 @@ const contacts = [
   {
     username: 'Michele',
     photo: 'resources/img/avatar_1.jpg',
-    lastSeen: '10:30 Lun 20 Ago',
+    lastSeen: 'oggi alle ore 10:30',
     chatHistory: [
       {
         text: 'Hello, how r u?',
@@ -27,7 +27,7 @@ const contacts = [
   {
     username: 'Fabio',
     photo: 'resources/img/avatar_2.jpg',
-    lastSeen: '10:30 Lun 20 Ago',
+    lastSeen: 'oggi alle ore 10:30',
     chatHistory: [
       {
         text: 'Hello, how r u?',
@@ -39,7 +39,7 @@ const contacts = [
   {
     username: 'Samuele',
     photo: 'resources/img/avatar_3.jpg',
-    lastSeen: '10:30 Lun 20 Ago',
+    lastSeen: 'oggi alle ore 10:30',
     chatHistory: [
       {
         text: 'Hello, how r u?',
@@ -51,7 +51,7 @@ const contacts = [
   {
     username: 'Luisa',
     photo: 'resources/img/avatar_4.jpg',
-    lastSeen: '10:30 Lun 20 Ago',
+    lastSeen: 'oggi alle ore 10:30',
     chatHistory: [
       {
         text: 'Hello, how r u?',
@@ -72,13 +72,15 @@ const rootApp = new Vue ({
     contacts: [...contacts],
     counter: 0,
     myUsername: myUsername,
-    searchInput: ''
+    searchInput: '',
+    filteredContacts: []
 
   },
   methods: {
     contactChat: function(index) {
       this.counter = index;
     },
+
     sendMessage: function() {
       this.contacts[this.counter].chatHistory.push(
         {
@@ -89,13 +91,22 @@ const rootApp = new Vue ({
       )
 
       this.inputMessage = '';
+      //let oldCounter = this.counter
+      setTimeout(this.returnMessage, 3000);
     },
 
     filterContacts() {
       this.filteredContacts = this.contacts.filter( (element) => element.username.toLowerCase().includes(this.searchInput) )
     },
 
-    // activateFilteredContact(index)
+    returnMessage: function() {
+      this.contacts[this.counter].chatHistory.push(
+        {
+          text: 'ciao',
+          date: '22 Nov 2020',
+          type: 'receive'
+        })
+    }
   }
 
 })

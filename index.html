@@ -32,17 +32,21 @@
 
         <!-- mio profilo -->
         <div class="user d-flex v-align">
+
           <div class="user-info d-flex v-align">
 
             <!-- bindo l'oggetto dellutente -->
             <img :src="myUsername.photo" alt="Utente">
             <span>{{myUsername.username}}</span>
-
           </div>
 
           <!-- icone utili -->
-          <div class="user-utilities">
+          <div class="user-utilities d-flex flex-end">
+            <span><i class="fas fa-circle-notch"></i></span>
 
+            <span><i class="fas fa-comment-alt"></i></span>
+
+            <span><i class="fas fa-ellipsis-v"></i></span>
           </div>
         </div>
 
@@ -67,7 +71,7 @@
           placeholder="Cerca o inizia una nuova chat"
           value=""
           v-model="searchInput"
-          @keyup.enter="filterContacts()"
+          @input="filterContacts()"
           >
 
         </div>
@@ -83,6 +87,17 @@
             @click="activateFilteredContact(index)"
             :class="{selected: index === counter}"
             >
+            <!-- aggancio la chiave foto a img -->
+            <img :src="element['photo']" alt="">
+
+               <!-- e i nomi  -->
+            <div class="flex-end">
+
+
+              <span>{{element.username}}</span>
+
+
+            </div>
             </li>
           </template>
 
@@ -93,20 +108,19 @@
             @click="contactChat(index)"
             :class="{selected: index === counter}"
             >
+            <!-- aggancio la chiave foto a img -->
+            <img :src="element['photo']" alt="">
+
+               <!-- e i nomi  -->
+            <div class="flex-end">
+
+
+              <span>{{element.username}}</span> <br>
+            </div>
             </li>
           </template>
 
-          <!-- aggancio la chiave foto a img -->
-          <img :src="element['photo']" alt="">
 
-             <!-- e i nomi  -->
-          <div class="flex-end">
-
-
-            <span>{{element.username}}</span> <br>
-            <span>{{element.lastSeen}}</span>
-
-          </div>
         </ul>
       </div>
 
@@ -122,9 +136,15 @@
 
 
             <div>
-
               <h3>{{contacts[counter].username}}</h3> <br>
-              <span>Ultimo accesso oggi alle</span>
+
+              <div class="lastSeen"
+              v-for="(element, index) in contacts"
+              >
+              <span>Ultimo accesso</span>
+              <span>{{element.lastSeen}}</span>
+              </div>
+
             </div>
 
           </div>
@@ -140,7 +160,6 @@
             >
               <!-- ricevuti -->
               <span>{{element.text}}</span>
-
             </div>
           </div>
         </div>
@@ -148,12 +167,16 @@
         <!-- input utente chat -->
         <div class="chat-footer d-flex flex-end">
 
+          <span><i class="far fa-smile"></i></span>
+
           <!-- salvo il contenuto del messaggio in una variabile -->
           <input type="text"
           placeholder="Scrivi un messaggio"
           v-model="inputMessage"
           @keyup.enter="sendMessage()"
           >
+
+          <span><i class="fas fa-microphone"></i></span>
 
         </div>
       </div>
