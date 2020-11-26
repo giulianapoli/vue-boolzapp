@@ -87,17 +87,18 @@
             @click="activateFilteredContact(index)"
             :class="{selected: index === counter}"
             >
-            <!-- aggancio la chiave foto a img -->
-            <img :src="element['photo']" alt="">
+              <!-- aggancio la chiave foto a img -->
+              <img :src="element['photo']" alt="">
 
-               <!-- e i nomi  -->
-            <div class="flex-end">
-
-
-              <span>{{element.username}}</span>
+                 <!-- e i nomi  -->
+              <div class="flex-end">
 
 
-            </div>
+                <span>{{element.username}}</span>
+
+
+
+              </div>
             </li>
           </template>
 
@@ -116,6 +117,9 @@
 
 
               <span>{{element.username}}</span> <br>
+
+              <span>{{element.chatHistory.text}}</span>
+
             </div>
             </li>
           </template>
@@ -130,20 +134,30 @@
         <!-- barra chat superiore -->
         <div class="chat-header">
           <div class="active d-flex flex-start">
-            <div>
+            <div class="active-contact v-align">
               <img :src="contacts[counter].photo">
+
+              <div class="d-inline">
+                <h3>{{contacts[counter].username}}</h3> <br>
+
+                <div class="lastSeen">
+                <span>Ultimo accesso</span>
+                <span>{{contacts[counter].lastSeen}}</span>
+                </div>
+
+              </div>
             </div>
 
-
-            <div>
-              <h3>{{contacts[counter].username}}</h3> <br>
-
-              <div class="lastSeen"
-              v-for="(element, index) in contacts"
-              >
-              <span>Ultimo accesso</span>
-              <span>{{element.lastSeen}}</span>
-              </div>
+            <div class="chat-icons d-flex">
+              <span>
+                <i class="fas fa-search"></i>
+              </span>
+              <span>
+                <i class="fas fa-paperclip"></i>
+              </span>
+              <span>
+                <i class="fas fa-ellipsis-v"></i>
+              </span>
 
             </div>
 
@@ -153,7 +167,7 @@
         <!-- messaggi utenti -->
         <div class="chat-main d-flex flex-col">
 
-          <div>
+          <div class="d_flex">
             <div class="message d-flex"
             :class="{receive : element.type == 'receive', send : element.type == 'send'}"
             v-for="element in contacts[counter].chatHistory"

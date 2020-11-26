@@ -91,21 +91,20 @@ const rootApp = new Vue ({
       )
 
       this.inputMessage = '';
-      //let oldCounter = this.counter
-      setTimeout(this.returnMessage, 3000);
+
+      let oldCounter = this.counter;
+      setTimeout( () => {
+        this.contacts[oldCounter].chatHistory.push(
+          {
+            text: 'ciao',
+            date: '22 Nov 2020',
+            type: 'receive'
+          })
+      }, 3000);
     },
 
     filterContacts() {
       this.filteredContacts = this.contacts.filter( (element) => element.username.toLowerCase().includes(this.searchInput) )
-    },
-
-    returnMessage: function() {
-      this.contacts[this.counter].chatHistory.push(
-        {
-          text: 'ciao',
-          date: '22 Nov 2020',
-          type: 'receive'
-        })
     }
   }
 
