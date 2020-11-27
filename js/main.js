@@ -73,7 +73,9 @@ const rootApp = new Vue ({
     activeContact: {},
     myUsername: myUsername,
     searchInput: '',
-    filteredContacts: []
+    filteredContacts: [],
+    msgPreview: true,
+
 
   },
 
@@ -97,9 +99,9 @@ const rootApp = new Vue ({
 
       this.inputMessage = '';
 
-      let oldCounter = this.counter;
+      let oldActiveContact = this.activeContact;
       setTimeout( () => {
-        this.contacts[oldCounter].chatHistory.push(
+        this.oldActiveContact.chatHistory.push(
           {
             text: 'ciao',
             date: '22 Nov 2020',

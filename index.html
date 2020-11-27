@@ -115,11 +115,11 @@
 
 
               <span>{{contact.username}}</span> <br>
-              <!-- <span
-              v-for="element in contacts[counter].chatHistory"
-              :class="{preview : msgPreview}"
+
+              <span
+              v-for="(contact, index) in contacts"
               >
-              {{element.text}} -->
+              {{contact.text}}
               </span>
 
             </div>
@@ -169,14 +169,13 @@
         <!-- messaggi utenti -->
         <div class="chat-main d-flex flex-col">
 
-          <div class="d_flex">
-            <div class="message d-flex"
-            :class="{receive : element.type == 'receive', send : element.type == 'send'}"
-            v-for="element in activeContact.chatHistory"
-            >
-              <!-- ricevuti -->
-              <span>{{element.text}}</span>
-            </div>
+          <div class="message"
+          v-for="message in activeContact.chatHistory"
+          :class="{receive : message.type == 'receive', send : message.type == 'send'}"
+          >
+            <!-- ricevuti -->
+            <span>{{message.text}}</span>
+
           </div>
         </div>
 
