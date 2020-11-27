@@ -70,19 +70,24 @@ const rootApp = new Vue ({
 
     inputMessage: '',
     contacts: [...contacts],
-    counter: 0,
+    activeContact: {},
     myUsername: myUsername,
     searchInput: '',
     filteredContacts: []
 
   },
+
+  created() {
+    this.activeContact = this.contacts[0];
+  },
+
   methods: {
-    contactChat: function(index) {
-      this.counter = index;
+    contactChat: function(contact) {
+      this.activeContact = contact;
     },
 
     sendMessage: function() {
-      this.contacts[this.counter].chatHistory.push(
+      this.activeContact.chatHistory.push(
         {
           text: this.inputMessage,
           date: '22 Nov 2020',
@@ -104,7 +109,8 @@ const rootApp = new Vue ({
     },
 
     filterContacts() {
-      this.filteredContacts = this.contacts.filter( (element) => element.username.toLowerCase().includes(this.searchInput) )
+      this.filteredContacts = this.contacts.filter( (element) => element.username.toLowerCase().includes(this.searchInput));
+      return this.activeContact;
     }
   }
 

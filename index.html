@@ -83,19 +83,17 @@
           <template v-if="searchInput.length > 0">
             <li
             class="d-flex v-align"
-            v-for="(element, index) in filteredContacts"
-            @click="activateFilteredContact(index)"
-            :class="{selected: index === counter}"
+            v-for="(contact, index) in filteredContacts"
+            @click="filterContacts(contact), contactChat(contact)"
+            :class="{selected: contact === activeContact}"
             >
               <!-- aggancio la chiave foto a img -->
-              <img :src="element['photo']" alt="">
+              <img :src="contact.photo" alt="">
 
                  <!-- e i nomi  -->
               <div class="flex-end">
 
-
-                <span>{{element.username}}</span>
-
+                <span>{{contact.username}}</span>
 
 
               </div>
@@ -105,20 +103,24 @@
           <template v-else>
             <li
             class="d-flex v-align"
-            v-for="(element, index) in contacts"
-            @click="contactChat(index)"
-            :class="{selected: index === counter}"
+            v-for="(contact, index) in contacts"
+            @click="contactChat(contact)"
+            :class="{selected: contact === activeContact}"
             >
             <!-- aggancio la chiave foto a img -->
-            <img :src="element['photo']" alt="">
+            <img :src="contact.photo" alt="">
 
                <!-- e i nomi  -->
             <div class="flex-end">
 
 
-              <span>{{element.username}}</span> <br>
-
-              <span>{{element.chatHistory.text}}</span>
+              <span>{{contact.username}}</span> <br>
+              <!-- <span
+              v-for="element in contacts[counter].chatHistory"
+              :class="{preview : msgPreview}"
+              >
+              {{element.text}} -->
+              </span>
 
             </div>
             </li>
@@ -135,14 +137,14 @@
         <div class="chat-header">
           <div class="active d-flex flex-start">
             <div class="active-contact v-align">
-              <img :src="contacts[counter].photo">
+              <img :src="activeContact.photo">
 
               <div class="d-inline">
-                <h3>{{contacts[counter].username}}</h3> <br>
+                <h3>{{activeContact.username}}</h3> <br>
 
                 <div class="lastSeen">
                 <span>Ultimo accesso</span>
-                <span>{{contacts[counter].lastSeen}}</span>
+                <span>{{activeContact.lastSeen}}</span>
                 </div>
 
               </div>
@@ -170,7 +172,7 @@
           <div class="d_flex">
             <div class="message d-flex"
             :class="{receive : element.type == 'receive', send : element.type == 'send'}"
-            v-for="element in contacts[counter].chatHistory"
+            v-for="element in activeContact.chatHistory"
             >
               <!-- ricevuti -->
               <span>{{element.text}}</span>
