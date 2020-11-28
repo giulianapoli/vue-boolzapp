@@ -47,6 +47,10 @@
   display: inline-block;
 }
 
+.d-none {
+  display: none;
+}
+
 /* contenitori */
 .app {
   display: flex;
@@ -238,7 +242,23 @@
   margin-top: 60px;
   height: calc(100% - 60px - 10%);
   background-image: url('../resources/img/mine.jpg');
+  position: relative;
 
+}
+
+.emoticons {
+  position: absolute;
+  height: 30%;
+  width: 80%;
+  background-color: white;
+  border-radius: 10px;
+  bottom: 0;
+  word-break: break-all;
+}
+
+.emoticons > span {
+  max-width: 100%;
+  cursor: pointer;
 }
 
 .lastSeen {

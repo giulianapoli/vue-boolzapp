@@ -117,9 +117,8 @@
               <span>{{contact.username}}</span> <br>
 
               <span
-              v-for="(contact, index) in contacts"
               >
-              {{contact.text}}
+              {{contact.chatHistory[contact.chatHistory.length - 1].text}}
               </span>
 
             </div>
@@ -177,12 +176,28 @@
             <span>{{message.text}}</span>
 
           </div>
+
+          <div class="d-flex emoticons"
+          :class="{'d-none':emojiStatus === false}"
+          >
+          <span
+          v-for="(emoticon, index) in emoji"
+          @click="counterSwitch(index), addEmoji()"
+          >
+          {{emoticon}}</span>
+
+          </div>
         </div>
 
         <!-- input utente chat -->
         <div class="chat-footer d-flex flex-end">
 
-          <span><i class="far fa-smile"></i></span>
+
+          <span
+          @click="openEmoticons()"
+          >
+          <i class="far fa-smile"></i>
+        </span>
 
           <!-- salvo il contenuto del messaggio in una variabile -->
           <input type="text"

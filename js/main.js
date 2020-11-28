@@ -75,8 +75,11 @@ const rootApp = new Vue ({
     searchInput: '',
     filteredContacts: [],
     msgPreview: true,
-
-
+    emoji: [
+      '😀', '😃', '😄', '😁', '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '🙂', '🙃', '😉', '😌', '😍', '😘', '😗', '😙', '😚', '😋', '😛', '😝', '😜', '🤓', '😎', '😏', '😒', '😞', '😔', '😟', '😕', '🙁', '😣', '😖', '😫', '😩', '😢', '😭', '😤', '😠', '😡', '😳', '😱', '😨', '😰', '😥', '😓', '🤗', '🤔', '🤥', '😶', '😐', '😑', '🙄', '😯', '😦', '😧', '😮', '😲', '😴', '🤤', '😪', '😵', '🤐', '🤢', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈', '👿', '👹', '👺', '🤡', '💩', '👻', '💀', '👽', '👾', '🤖', '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾'
+    ],
+    emojiStatus: false,
+    counterEmojiSelected: 0
   },
 
   created() {
@@ -97,11 +100,13 @@ const rootApp = new Vue ({
         }
       )
 
-      this.inputMessage = '';
+      this.inputMessage = ''
 
-      let oldActiveContact = this.activeContact;
+      // let oldActiveContact = this.activeContact;
+
       setTimeout( () => {
-        this.oldActiveContact.chatHistory.push(
+
+        this.activeContact.chatHistory.push(
           {
             text: 'ciao',
             date: '22 Nov 2020',
@@ -113,6 +118,18 @@ const rootApp = new Vue ({
     filterContacts() {
       this.filteredContacts = this.contacts.filter( (element) => element.username.toLowerCase().includes(this.searchInput));
       return this.activeContact;
+    },
+
+    openEmoticons() {
+      this.emojiStatus = !(this.emojiStatus)
+    },
+
+    counterSwitch(index) {
+      this.counterEmojiSelected = index;
+    },
+
+    addEmoji() {
+      this.inputMessage += this.emoji[this.counterEmojiSelected];
     }
   }
 
