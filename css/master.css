@@ -248,17 +248,16 @@
 
 .emoticons {
   position: absolute;
-  height: 30%;
-  width: 80%;
-  background-color: white;
-  border-radius: 10px;
   bottom: 0;
-  word-break: break-all;
+  padding: 0.5rem;
+  width: 100%;
+  background-color: white;
 }
 
 .emoticons > span {
-  max-width: 100%;
   cursor: pointer;
+  flex-wrap: wrap;
+
 }
 
 .lastSeen {
@@ -273,9 +272,6 @@
   margin-left: 10px;
   margin-top: 10px;
   align-self: flex-start;
-}
-
-.message {
   word-break: break-all;
 }
 
@@ -291,6 +287,11 @@
 
 .answer {
   visibility: hidden;
+}
+
+.last {
+  color: grey;
+  font-size: 12px;
 }
 
 /* input utente */

@@ -117,6 +117,7 @@
               <span>{{contact.username}}</span> <br>
 
               <span
+              :class="{'last': lastMessage}"
               >
               {{contact.chatHistory[contact.chatHistory.length - 1].text}}
               </span>
@@ -177,14 +178,15 @@
 
           </div>
 
-          <div class="d-flex emoticons"
+          <div class="emoticons"
           :class="{'d-none':emojiStatus === false}"
           >
-          <span
-          v-for="(emoticon, index) in emoji"
-          @click="counterSwitch(index), addEmoji()"
-          >
-          {{emoticon}}</span>
+            <span
+            class=""
+            v-for="(emoticon, index) in emoji"
+            @click="counterSwitch(index), addEmoji()"
+            >
+            {{emoticon}}</span>
 
           </div>
         </div>
